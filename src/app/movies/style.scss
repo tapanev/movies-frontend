@@ -1,0 +1,63 @@
+.movie-main.movie-list-screen {
+  display: block;
+  height: 100%;
+}
+.movie-list-screen .ml-main {
+  position: relative;
+  display: block;
+}
+.movie-list-screen .ml-main .ml-header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 120px;
+}
+.movie-list-screen .pagination {
+  justify-content: center;
+}
+.movie-list-screen .pagination .page-link {
+  background-color: transparent;
+  border: none;
+  padding: 4px 12px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.movie-list-screen .pagination .page-link.index {
+  border-radius: 4px;
+  background: #092c39;
+}
+.movie-list-screen .pagination .page-item:not(:last-child) {
+  margin-right: 8px;
+}
+.movie-list-screen .pagination .page-item.active .page-link {
+  background-color: var(--secondary-color);
+}
+.movie-list-screen .pagination .page-item .page-link.index:hover {
+  background-color: #0b444a;
+}
+.movie-list-screen .pagination .page-item:first-child {
+  margin-right: 16px;
+}
+.movie-list-screen .pagination .page-item:last-child {
+  margin-left: 8px;
+}
+.empty-screen {
+  position: relative;
+  text-align: center;
+}
+.empty-screen h2 {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 56px;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 40px;
+}
+.empty-screen .mprimary-btn {
+  display: inline-block;
+  width: auto;
+  padding: 16px 26px;
+}
