@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.scss";
 import Image from "next/image";
-import { createContext } from "vm";
-
-const AppContext = createContext();
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "Movies App",
@@ -19,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Toaster position="top-right" />
         {children}
         <footer>
           <figure>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Button from "../components/Button";
 import "./style.scss";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("test@demo.com");
@@ -42,9 +43,12 @@ const Login = () => {
       } else {
         Cookies.set("user", JSON.stringify(loginData.data));
       }
-
+      toast.success("LoggedIn successfully!");
       router.push("/movies");
     } catch (error) {
+      toast.error(
+        error?.response?.data?.errorMessage || "Something went wrong!"
+      );
     } finally {
       setLoading(false);
     }

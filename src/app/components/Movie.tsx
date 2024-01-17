@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Button from "./Button";
 import "./movie.scss";
+import toast from "react-hot-toast";
 
 interface formErrors {
   title: string | null;
@@ -102,13 +103,24 @@ const MovieForm = (props: movieProps) => {
     setSubmit(true);
     // Edit movie
     if (movieId) {
-      await apiCall("movie/" + movieId, "PUT", formData);
-      router.push("/movies");
+      try {
+        await apiCall("movie/" + movieId, "PUT", formData);
+        toast.success("Movie updated successfully!");
+        router.push("/movies");
+      } catch (error) {
+        toast.error(
+          error?.response?.data?.errorMessage || "Something went wrong!"
+        );
+      }
     } else {
       try {
         await apiCall("movie", "POST", formData);
+        toast.success("Movie added successfully!");
         router.push("/movies");
       } catch (error) {
+        toast.error(
+          error?.response?.data?.errorMessage || "Something went wrong!"
+        );
       } finally {
         setSubmit(false);
       }
@@ -132,13 +144,13 @@ const MovieForm = (props: movieProps) => {
         role="alert"
       ></div>
       <div className="cmovie-main cm-web">
-        <h4>Create a new movie</h4>
+        <h4>{movieId ? "Edit" : "Create a new movie"}</h4>
         <div
           className="cmovie-fold flex-col lg:!flex-row "
           onDrop={handlePosterDrop}
         >
           <div
-            className={`upload-img mb-4 ${
+            className={`upload-img mb-4 aspect-[2/3] md:w-56 ${
               errors.poster && " !border-rose-500"
             } `}
           >
@@ -159,7 +171,7 @@ const MovieForm = (props: movieProps) => {
             )}
             <input type="file" onChange={handleFileSelect} />
           </div>
-          <div className="cmovie-form">
+          <div className="cmovie-form md:w-96">
             <div className="form-group">
               <input
                 type="text"
