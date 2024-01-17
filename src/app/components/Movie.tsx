@@ -107,7 +107,7 @@ const MovieForm = (props: movieProps) => {
         await apiCall("movie/" + movieId, "PUT", formData);
         toast.success("Movie updated successfully!");
         router.push("/movies");
-      } catch (error) {
+      } catch (error: any) {
         toast.error(
           error?.response?.data?.errorMessage || "Something went wrong!"
         );
@@ -117,7 +117,7 @@ const MovieForm = (props: movieProps) => {
         await apiCall("movie", "POST", formData);
         toast.success("Movie added successfully!");
         router.push("/movies");
-      } catch (error) {
+      } catch (error: any) {
         toast.error(
           error?.response?.data?.errorMessage || "Something went wrong!"
         );

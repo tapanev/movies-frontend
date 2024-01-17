@@ -45,7 +45,7 @@ const Login = () => {
       }
       toast.success("LoggedIn successfully!");
       router.push("/movies");
-    } catch (error) {
+    } catch (error: any) {
       toast.error(
         error?.response?.data?.errorMessage || "Something went wrong!"
       );
